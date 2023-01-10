@@ -15,7 +15,7 @@ const teamX = document.getElementById("user-score");
 const teamY = document.getElementById("computer-score");
 const scoreBoard_div = document.querySelector(".score-board");
 let nextLetter
-
+let win = false
 const winningConditions = [
     [1, 2, 3],
     [4, 5, 6],
@@ -80,6 +80,8 @@ function removeGreen(condition) {
     }
 }
 function XWin(condition) {
+    win = true
+    message.innerHTML = "X Wins!"
     console.log("X WIN")
     XScore ++;
     teamX.innerHTML = XScore.toString();
@@ -87,16 +89,24 @@ function XWin(condition) {
     turnNum = 0
     setTimeout(() => {removeGreen(condition)}, 2000);
     setTimeout(() => {clearBoard()}, 2000);
+    setTimeout(() => {win = false}, 2000);
+    setTimeout(() => {message.innerHTML = "Make your move X!"}, 2000);
+
 }
 
 function YWin(condition) {
+    win = true
     console.log("Y WIN")
+    message.innerHTML = "X Wins!"
     YScore ++;
     teamY.innerHTML = YScore.toString();
     addGreen(condition)
     turnNum = 0
     setTimeout(() => {removeGreen(condition)}, 2000);
     setTimeout(() => {clearBoard()}, 2000);
+    setTimeout(() => {win = false}, 2000);
+    setTimeout(() => {message.innerHTML = "Make your move X!"}, 2000);
+
 }
 
 function checkWin() {
@@ -111,84 +121,77 @@ function checkWin() {
         if (a === b && b === c) {
             if (a === "X") {
                 XWin(i)
+                return true
             }
             else if (a === "O") {
                 YWin(i)
+                return true
             }
         }
         }
+    return false
     }
 
 square1.addEventListener("click", function () {
     console.log("User has picked square 1")
-    if (!square1.innerHTML) {
-        
+    if (!square1.innerHTML && !win) {
         square1.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square2.addEventListener("click", function () {
     console.log("User has picked square 2")
-    if (!square2.innerHTML) {
+    if (!square2.innerHTML && !win) {
         square2.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square3.addEventListener("click", function () {
     console.log("User has picked square 3")
-    if (!square3.innerHTML) {
+    if (!square3.innerHTML && !win) {
         square3.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square4.addEventListener("click", function () {
     console.log("User has picked square 4")
-    if (!square4.innerHTML) {
+    if (!square4.innerHTML && !win) {
         square4.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square5.addEventListener("click", function () {
     console.log("User has picked square 5")
-    if (!square5.innerHTML) {
+    if (!square5.innerHTML && !win) {
         square5.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square6.addEventListener("click", function () {
     console.log("User has picked square 6")
-    if (!square6.innerHTML) {
+    if (!square6.innerHTML && !win) {
         square6.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square7.addEventListener("click", function () {
     console.log("User has picked square 7")
-    if (!square7.innerHTML) {
+    if (!square7.innerHTML && !win) {
         square7.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square8.addEventListener("click", function () {
     console.log("User has picked square 8")
-    if (!square8.innerHTML) {
+    if (!square8.innerHTML && !win) {
         square8.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
 square9.addEventListener("click", function () {
     console.log("User has picked square 9")
-    if (!square9.innerHTML) {
+    if (!square9.innerHTML && !win) {
         square9.innerHTML = `${getTurn()}`
-        checkWin()
-        message.innerHTML = `Make your move ${nextLetter}!`
+        if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
 })
