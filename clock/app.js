@@ -79,6 +79,15 @@ function removeGreen(condition) {
         getLetter(winningConditions[condition][i]).classList.remove('winning-animation')
     }
 }
+
+function tie() {
+    message.innerHTML = "It's a Tie!"
+    setTimeout(() => {clearBoard()}, 2000);
+    setTimeout(() => {message.innerHTML = "Make your move X!"}, 2000);
+
+
+}
+
 function XWin(condition) {
     win = true
     message.innerHTML = "X Wins!"
@@ -129,7 +138,12 @@ function checkWin() {
             }
         }
         }
-    return false
+    if (turnNum >= 9) {
+        tie()
+        console.log("Ran Tie")
+        return true
+    }
+    else return false
     }
 
 square1.addEventListener("click", function () {
