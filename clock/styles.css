@@ -50,6 +50,7 @@ td {
     font-size: 100px;
 }
 
+
 table {
     margin: 50px auto;
     position: relative;
@@ -102,6 +103,34 @@ table {
     right: -17px;
 }
 
+#start {
+    background-color: green;
+    border: 0;
+    position: relative;
+    left: 35%;
+    border-radius: 10px;
+    width: 500px;
+    font-size: 40px;
+    color: white;
+}
+
+#start:hover {
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
 .winning-animation {
     color: green;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#after-start {
+    display: none;
 }

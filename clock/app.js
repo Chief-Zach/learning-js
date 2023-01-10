@@ -8,6 +8,8 @@ const square7 = document.getElementById("7")
 const square8 = document.getElementById("8")
 const square9 = document.getElementById("9")
 const message = document.getElementById("message")
+const startButton = document.getElementById("start")
+const gameBoard = document.getElementById("after-start")
 let turnNum = 0
 let XScore = 0;
 let YScore = 0;
@@ -208,4 +210,10 @@ square9.addEventListener("click", function () {
         square9.innerHTML = `${getTurn()}`
         if (!checkWin()) message.innerHTML = `Make your move ${nextLetter}!`
     }
+})
+
+startButton.addEventListener("click", function () {
+    gameBoard.style.display = "block"
+    startButton.style.display = "none"
+    console.log("Showing")
 })
