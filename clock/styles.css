@@ -92,12 +92,16 @@ table {
 #user-label {
     position: absolute;
     top: 30px;
-    left: -25px;
+    left: -17px;
 }
 
 
 #computer-label {
     position: absolute;
     top: 30px;
-    right: -30px;
+    right: -17px;
+}
+
+.winning-animation {
+    color: green;
 }

@@ -7,125 +7,188 @@ const square6 = document.getElementById("6")
 const square7 = document.getElementById("7")
 const square8 = document.getElementById("8")
 const square9 = document.getElementById("9")
+const message = document.getElementById("message")
 let turnNum = 0
 let XScore = 0;
 let YScore = 0;
 const teamX = document.getElementById("user-score");
 const teamY = document.getElementById("computer-score");
 const scoreBoard_div = document.querySelector(".score-board");
+let nextLetter
 
+const winningConditions = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7]
+];
 
-winCases = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,6,8],[3,6,9],[1,5,9],[3,5,7]]
+function clearBoard() {
+    square1.innerHTML = ''
+    square2.innerHTML = ''
+    square3.innerHTML = ''
+    square4.innerHTML = ''
+    square5.innerHTML = ''
+    square6.innerHTML = ''
+    square7.innerHTML = ''
+    square8.innerHTML = ''
+    square9.innerHTML = ''
+}
 
 function getTurn() {
     if (turnNum % 2 === 0) {
         turnNum ++
         console.log(turnNum)
+        nextLetter = "O"
         return "X"
     }
     else {
         turnNum++
+        nextLetter = "X"
         return "O"
     }
 }
 
 function getLetter(id) {
     switch (id) {
-        case 1: return square1.innerHTML
-        case 2: return square2.innerHTML
-        case 3: return square3.innerHTML
-        case 4: return square4.innerHTML
-        case 5: return square5.innerHTML
-        case 6: return square6.innerHTML
-        case 7: return square7.innerHTML
-        case 8: return square8.innerHTML
-        case 9: return square9.innerHTML
+        case 1: return square1
+        case 2: return square2
+        case 3: return square3
+        case 4: return square4
+        case 5: return square5
+        case 6: return square6
+        case 7: return square7
+        case 8: return square8
+        case 9: return square9
     }
 }
 
-function XWin() {
-    console.log("WIN")
+function addGreen(condition) {
+    for (let i = 0; i <= 2; i++) {
+        console.log(winningConditions[condition][i])
+        getLetter(winningConditions[condition][i]).classList.add('winning-animation')
+    }
+}
+
+function removeGreen(condition) {
+    for (let i = 0; i <= 2; i++) {
+        getLetter(winningConditions[condition][i]).classList.remove('winning-animation')
+    }
+}
+function XWin(condition) {
+    console.log("X WIN")
     XScore ++;
     teamX.innerHTML = XScore.toString();
-
+    addGreen(condition)
+    turnNum = 0
+    setTimeout(() => {removeGreen(condition)}, 2000);
+    setTimeout(() => {clearBoard()}, 2000);
 }
 
-function YWin() {
-    console.log("WIN")
+function YWin(condition) {
+    console.log("Y WIN")
     YScore ++;
     teamY.innerHTML = YScore.toString();
-
+    addGreen(condition)
+    turnNum = 0
+    setTimeout(() => {removeGreen(condition)}, 2000);
+    setTimeout(() => {clearBoard()}, 2000);
 }
+
 function checkWin() {
-    for (let i=0; i<winCases.length; i++) {
-        let currentLetter;
-        for (let w=0; i<winCases[i].length; w++) {
-            if (!currentLetter) {
-                currentLetter = getLetter(winCases[i][w])
-                console.log(currentLetter)
+    for (let i = 0; i <= 7; i++) {
+        const winCondition = winningConditions[i];
+        let a = getLetter(winCondition[0]).innerHTML;
+        let b = getLetter(winCondition[1]).innerHTML;
+        let c = getLetter(winCondition[2]).innerHTML;
+        if (a === '' || b === '' || c === '') {
+            continue;
+        }
+        if (a === b && b === c) {
+            if (a === "X") {
+                XWin(i)
             }
-            else {
-                if (currentLetter === getLetter(winCases[i][w])) {
-                    if (w === winCases[i].length) {
-                        if (currentLetter === "X") {
-                            return XWin()
-                        }
-                        else if (currentLetter === "Y") {
-                            return YWin()
-                        }
-                    }
-                }
-                else {
-                    break
-                }
+            else if (a === "O") {
+                YWin(i)
             }
         }
+        }
     }
-    return false
-}
 
 square1.addEventListener("click", function () {
     console.log("User has picked square 1")
-    square1.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square1.innerHTML) {
+        
+        square1.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square2.addEventListener("click", function () {
     console.log("User has picked square 2")
-    square2.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square2.innerHTML) {
+        square2.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square3.addEventListener("click", function () {
     console.log("User has picked square 3")
-    square3.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square3.innerHTML) {
+        square3.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square4.addEventListener("click", function () {
     console.log("User has picked square 4")
-    square4.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square4.innerHTML) {
+        square4.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square5.addEventListener("click", function () {
     console.log("User has picked square 5")
-    square5.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square5.innerHTML) {
+        square5.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square6.addEventListener("click", function () {
     console.log("User has picked square 6")
-    square6.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square6.innerHTML) {
+        square6.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square7.addEventListener("click", function () {
     console.log("User has picked square 7")
-    square7.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square7.innerHTML) {
+        square7.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square8.addEventListener("click", function () {
     console.log("User has picked square 8")
-    square8.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square8.innerHTML) {
+        square8.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
 square9.addEventListener("click", function () {
     console.log("User has picked square 9")
-    square9.innerHTML = `${getTurn()}`
-    checkWin()
+    if (!square9.innerHTML) {
+        square9.innerHTML = `${getTurn()}`
+        checkWin()
+        message.innerHTML = `Make your move ${nextLetter}!`
+    }
 })
